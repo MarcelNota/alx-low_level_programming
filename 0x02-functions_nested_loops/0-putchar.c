@@ -1,9 +1,8 @@
 #include "main.h"
 /**
 * main -Initialization
-* Return: 0 
+* Return: 0
 */
-
 int main(void)
 {
 	char str[] = "_putchar";
