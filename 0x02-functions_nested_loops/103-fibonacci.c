@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- * main - displays the addition 
+ * main - displays the addition
  *  * be a new line
  * Return: 0
  *

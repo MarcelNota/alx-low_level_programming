@@ -4,7 +4,7 @@
  * main - displays fibonacci numbers
  *  * from 1 and 2
  * has new line
- *  * Return: 0 
+ *  * Return: 0
  */
 int main(void)
 {

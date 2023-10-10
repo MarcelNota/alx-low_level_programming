@@ -3,7 +3,7 @@
 /**
  * main - displays the addition of all multiplications
  *  * must be below 1024
- * Return: 0 
+ * Return: 0
  *
  */
 int main(void)
