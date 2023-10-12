@@ -2,7 +2,7 @@
 
 /**
  * * print_diagonal -> displaying lines
- * * @n: integer 
+ * * @n: integer
  */
 void print_diagonal(int n)
 {

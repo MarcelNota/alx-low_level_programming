@@ -5,7 +5,7 @@
  *
  * @size: shows the size
  *
- * Return: 0 
+ * Return: 0
  */
 
 void print_triangle(int size)
