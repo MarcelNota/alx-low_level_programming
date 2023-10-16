@@ -4,7 +4,7 @@
  * _atoi - changes a string to an integer.
  * @s: the string
  *
- *Return: The integer value 
+ *Return: The integer value
  */
 
 int _atoi(char *s)

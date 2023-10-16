@@ -6,7 +6,7 @@
  * @a: array pointer
  * @n: integer
  * Description: Numbers are separated by comma
- * Numbers must be displayed in the same order they are stored 
+ * Numbers must be displayed in the same order they are stored
  * only use _putchar to display
  */
 
