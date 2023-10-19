@@ -1,14 +1,12 @@
 #include "main.h"
 
 /**
- * _strcmp - compare to strings str1 and str2
+ * _strcmp - compare strings
  *
- * @s1: pointer to the 1st string to be compared
- * @s2: pointer to the 2nd string to be compared
+ * @s1: 1st string pointer
+ * @s2:2nd string pointer
  *
- * Return: 0 if s1 == s2
- *	negative difference if s1 < s2
- *	positive difference if s1 > s2
+ * Return: 0
  */
 
 
