@@ -1,5 +1,4 @@
 #include "functions_pointers.h"
-#include <stdio.h>
 
 /**
  * array_iterator - iterrator
