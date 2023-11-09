@@ -16,7 +16,15 @@ unsigned char opcode;
 if (argc != 2)
 {
 printf("Error\n");
-exit(2);
+exit(1);
+}
+
+bytes = atoi(argv[1]);
+
+if (bytes < 0)
+{
+	printf("Error\n");
+	exit(2);
 }
 
 for (index = 0; index < bytes; index++)
