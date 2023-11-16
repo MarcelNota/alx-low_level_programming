@@ -5,7 +5,7 @@
  * add_node - adding a node
  * @head: pointer
  * @str: string
- * Return: null 
+ * Return: null
  */
 list_t *add_node(list_t **head, const char *str)
 {
