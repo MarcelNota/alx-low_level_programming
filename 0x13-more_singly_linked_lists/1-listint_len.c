@@ -1,16 +1,19 @@
 #include "lists.h"
-
 /**
  * listint_len - elements
  * @h: the list
- * Return: the nodes
+ *
+ * Return: nodes
  */
 size_t listint_len(const listint_t *h)
 {
-	 size_t elem = 0;
-while (h)
-elem++;
-h = h->next;
-}
-return (elem);
+ size_t alu = 0;
+
+ while (h)
+ {
+ alu++;
+ h = h->next;
+ }
+
+ return (alu);
 }

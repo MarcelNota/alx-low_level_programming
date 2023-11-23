@@ -5,18 +5,20 @@
 * @head: 1st list node
 * @n: the data
 * Description: single list
-* Return: 0
+* Return: nodes
 */
 listint_t *add_nodeint(listint_t **head, const int n)
 {
-	 listint_t *novo;
+ listint_t *nuevo;
 
-novo = malloc(sizeof(listint_t));
-if (!novo)
-return (NULL);
-novo->n = n;
-novo->next = *head;
-*head = novo;
-return (novo);
+ nuevo = malloc(sizeof(listint_t));
+ if (!nuevo)
+ return (NULL);
+
+ nuevo->n = n;
+ nuevo->next = *head;
+ *head = nuevo;
+
+ return (nuevo);
 }
 
