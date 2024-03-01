@@ -1,25 +1,33 @@
-#include "main.h"
+#include"main.h"
 
 /**
- * append_text_to_file - puts text
- * @filename: the file
- * @text_content: content
- * Return: 0
+ *append_text_to_file - puts to file
+ *@filename: the pointer
+ *@text_content: the caracteres sequence
+ *
+ *Return: for failure -1 is the code
  */
+
 int append_text_to_file(const char *filename, char *text_content)
 {
-int abr, esc, dar = 0;
-if (filename == NULL)
-return (-1);
-if (text_content != NULL)
-{
-for (dar = 0; text_content[dar];)
-dar++;
-}
-abr = open(filename, O_WRONLY | O_APPEND);
-esc = write(abr, text_content, abr);
-if (abr == -1 || esc == -1)
-return (-1);
-close(abr);
-return (1);
+	int o, w, len = 0;
+
+	if (filename == NULL)
+		return (-1);
+
+	if (text_content != NULL)
+	{
+		for (len = 0; text_content[len];)
+			len++;
+	}
+
+	o = open(filename, O_WRONLY | O_APPEND);
+	w = write(o, text_content, len);
+
+	if (o == -1 || w == -1)
+		return (-1);
+
+	close(o);
+
+	return (1);
 }

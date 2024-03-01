@@ -1,94 +1,101 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
+
 char *create_buffer(char *file);
 void close_file(int fd);
 
 /**
-* creates_buffer - buffer
-* @file: file
-* Return: 0
-*/
-
-char *creates_buffer(char *file)
+ * create_buffer - puts the size
+ * @file: the file
+ *
+ * Return: pointer
+ */
+char *create_buffer(char *file)
 {
+	char *buffer;
 
-char *boo;
+	buffer = malloc(sizeof(char) * 1024);
 
-boo = malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
+	{
+		dprintf(STDERR_FILENO,
+			"Error: Can't write to %s\n", file);
+		exit(99);
+	}
 
-if (boo == NULL)
-{
-
-dprintf(STDERR_FILENO,
-"Error: Can't write to %s\n", file);
-exit(99);
+	return (buffer);
 }
-return (boo);
-}
+
 /**
-* close_file - for ending
-* @fd: description
-*/
-void close_file(int alu)
+ * close_file - end of file
+ * @fd: end of file
+ */
+void close_file(int fd)
 {
-int z;
-z = close(alu);
-if (z == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-exit(100);
+	int c;
+
+	c = close(fd);
+
+	if (c == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
 }
-}
+
 /**
-* main - the main
-* @argc: args
-* @argv: args
-* Return: nothing
-* Description: it shows all codees
+ * main - where the copy is made
+ * @argc: the numbers
+ * @argv: the array
+ *
+ * Return: zero
+ *
+ * Description: for incorrect 97 is the code
+ *              for inexistence 98 is the code
+ *              for cannot create 99 is the code
+ *              for cannot close 100 is the code
+ */
 int main(int argc, char *argv[])
 {
+	int from, to, r, w;
+	char *buffer;
 
-int org, fuu, ler, esc;
-char *roar;
-if (argc != 3)
-{
+	if (argc != 3)
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 
-dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-exit(97);
-}
-roar = create_buffer(argv[2]);
+	buffer = create_buffer(argv[2]);
+	from = open(argv[1], O_RDONLY);
+	r = read(from, buffer, 1024);
+	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-org = open(argv[1], O_RDONLY);
+	do {
+		if (from == -1 || r == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't read from file %s\n", argv[1]);
+			free(buffer);
+			exit(98);
+		}
 
-ler = read(org, roar, 1024);
+		w = write(to, buffer, r);
+		if (to == -1 || w == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't write to %s\n", argv[2]);
+			free(buffer);
+			exit(99);
+		}
 
-fuu = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-do {
+		r = read(from, buffer, 1024);
+		to = open(argv[2], O_WRONLY | O_APPEND);
 
-if (org == -1 || ler == -1)
-{
-dprintf(STDERR_FILENO,
-"Error: Can't read from file %s\n", argv[1]);
-free(roar);
-exit(98);
-}
-esc = write(to, roar, ler);
-if (fuu == -1 || esc == -1)
-{
-dprintf(STDERR_FILENO,
-"Error: Can't write to %s\n", argv[2]);
-free(roar);
-exit(99);
-}
-ler = read(org, roar, 1024);
-fuu = open(argv[2], O_WRONLY | O_APPEND);
-} while (ler > 0);
-free(roar);
+	} while (r > 0);
 
-close_file(org);
+	free(buffer);
+	close_file(from);
+	close_file(to);
 
-close_file(fuu);
-
-return (0);
+	return (0);
 }
